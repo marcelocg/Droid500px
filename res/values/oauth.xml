@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="consumer_key">wjXmAgN6thukZ1MXVt4qr7Y8Zuqb04u72N4tobrR</string>
+    <string name="consumer_secret">FyGGBNx8yJAcboUVeexjJAyZk8ubCBxjFX6yLJAs</string>
+    <string name="request_token_url">https://api.500px.com/v1/oauth/request_token</string>
+    <string name="access_token_url">https://api.500px.com/v1/oauth/access_token</string>
+    <string name="authorize_url">https://api.500px.com/v1/oauth/authorize</string>
+    <string name="callback_url">droid500px://droid500px.com</string>
+</resources>
