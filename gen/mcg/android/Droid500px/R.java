@@ -15,6 +15,7 @@ public final class R {
     }
     public static final class layout {
         public static final int main=0x7f030000;
+        public static final int main_tab_host=0x7f030001;
     }
     public static final class string {
         public static final int access_token_url=0x7f040003;
