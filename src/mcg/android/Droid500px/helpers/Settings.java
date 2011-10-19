@@ -7,8 +7,9 @@ public class Settings {
 	public static String AUTH_KEY = "AUTH_KEY";
 	public static String AUTH_SECRET = "AUTH_SECRET";
 
-	//these are set at Droid500pxActivity.initPreferences
+	//these are set at AuthenticateActivity.initPreferences
 	public static String CALLBACK_URL;
+	public static String CONSUMER_KEY;
 	static SharedPreferences prefs = null;
 	
 	public static void initSettings(SharedPreferences settings){

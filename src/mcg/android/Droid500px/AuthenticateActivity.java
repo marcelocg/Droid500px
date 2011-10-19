@@ -62,6 +62,10 @@ public class AuthenticateActivity extends Activity {
 		token = Settings.getAccessToken();
 		secret = Settings.getAccessSecret();
 		
+		runAsGuest(); // Fluxo desviado enquanto não se define melhor fluxo de autenticação
+		
+/*		TRECHO COMENTADO ATÉ MELHOR PROJETO PARA FLUXO DE AUTENTICAÇÃO
+		
 		if(!(token == null || secret == null)) {
 			consumer.setTokenWithSecret(token, secret);
 			Toast.makeText(this, "User already authenticated. Token = " + token + ". Secret = " + secret, Toast.LENGTH_LONG).show();
@@ -70,6 +74,8 @@ public class AuthenticateActivity extends Activity {
 			showDialog(DIALOG_CHOOSE_AUTHENTICATE_OR_GUEST);
 			
 		}
+*/
+		
 	}
 
 	private void authenticate() {
@@ -93,6 +99,7 @@ public class AuthenticateActivity extends Activity {
     	settings = getSharedPreferences("d5px", Context.MODE_PRIVATE);
         Settings.initSettings(settings);
         Settings.CALLBACK_URL = getResources().getString(R.string.callback_url);
+        Settings.CONSUMER_KEY = getResources().getString(R.string.consumer_key);
 	}
 
 	private void runAsGuest() {
