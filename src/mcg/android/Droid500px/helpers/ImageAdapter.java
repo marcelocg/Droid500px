@@ -6,9 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import mcg.android.Droid500px.R;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
@@ -24,10 +22,6 @@ public class ImageAdapter extends BaseAdapter {
 
     public ImageAdapter(Context c) {
         context = c;
-        TypedArray styledAttributes = context.obtainStyledAttributes(R.styleable.Droid500pxGallery);
-        galleryItemBackground = styledAttributes.getResourceId(
-                R.styleable.Droid500pxGallery_android_galleryItemBackground, 0);
-        styledAttributes.recycle();
     }
 
     public int getCount() {
@@ -43,13 +37,20 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView = new ImageView(context);
-
+        ImageView imageView;
+        if (convertView == null) {  // if it's not recycled, initialize some attributes
+            imageView = new ImageView(context);
+            imageView.setPadding(0, 0, 0, 0);
+//            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        } else {
+            imageView = (ImageView) convertView;
+        }
         imageView.setImageBitmap(getImageFromURL(photosURLs[position]));
         //imageView.setLayoutParams(new Gallery.LayoutParams(150, 100));
         //imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setBackgroundResource(galleryItemBackground);
-        imageView.setAdjustViewBounds(true);
+        //imageView.setBackgroundResource(galleryItemBackground);
+        imageView.setAdjustViewBounds(false);
 
         return imageView;
     }

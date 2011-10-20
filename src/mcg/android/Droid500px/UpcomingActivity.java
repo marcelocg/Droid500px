@@ -1,16 +1,11 @@
 package mcg.android.Droid500px;
 
-import android.app.Activity;
+import mcg.android.Droid500px.helpers.RequestManager;
 import android.os.Bundle;
-import android.widget.TextView;
 
-public class UpcomingActivity extends Activity {
+public class UpcomingActivity extends GridViewActivity {
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        TextView textview = new TextView(this);
-        textview.setText("This is the 500px Upcoming Photos tab");
-        setContentView(textview);
+        super.onCreate(savedInstanceState, RequestManager.UPCOMING);
     }
 
 }

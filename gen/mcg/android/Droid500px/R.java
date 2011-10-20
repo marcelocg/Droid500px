@@ -14,10 +14,10 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int gallery=0x7f050000;
+        public static final int gridview=0x7f050000;
     }
     public static final class layout {
-        public static final int gallery=0x7f030000;
+        public static final int gridview=0x7f030000;
         public static final int main=0x7f030001;
         public static final int main_tab_host=0x7f030002;
     }

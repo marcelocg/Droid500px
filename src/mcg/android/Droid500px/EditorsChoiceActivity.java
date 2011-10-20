@@ -1,16 +1,11 @@
 package mcg.android.Droid500px;
 
-import android.app.Activity;
+import mcg.android.Droid500px.helpers.RequestManager;
 import android.os.Bundle;
-import android.widget.TextView;
 
-public class EditorsChoiceActivity extends Activity {
+public class EditorsChoiceActivity extends GridViewActivity {
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        TextView textview = new TextView(this);
-        textview.setText("This is the 500px Editor's Choice Photos tab");
-        setContentView(textview);
+        super.onCreate(savedInstanceState, RequestManager.EDITORS_CHOICE);
     }
 
 }

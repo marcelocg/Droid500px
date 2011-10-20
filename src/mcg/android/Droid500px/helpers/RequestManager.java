@@ -49,10 +49,10 @@ public class RequestManager {
 	}
 	
 	public static String[] readPhotoStream(String stream, int photosPerPage, int page){
+		if (stream == null || stream.equals("")) stream = FRESH_TODAY;
 		
 		String resultStream = request(stream, rectifyPhotosPerPage(photosPerPage), rectifyPageNumber(page));
 		String[] urls = new String[photosPerPage];
-		
 		
 		try {
 			JSONObject feature = new JSONObject(resultStream);

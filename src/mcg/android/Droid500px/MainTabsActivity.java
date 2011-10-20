@@ -1,16 +1,28 @@
 package mcg.android.Droid500px;
 
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.OAuthProvider;
+import mcg.android.Droid500px.helpers.Settings;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TabHost;
 
 public class MainTabsActivity extends TabActivity {
+
+	OAuthConsumer consumer;
+	OAuthProvider provider;
+
+	private static SharedPreferences settings;
+
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main_tab_host);
 
-//	    Resources res = getResources(); // Resource object to get Drawables
+	    initPreferences();
+	    
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
 	    Intent intent;  // Reusable Intent for each tab
@@ -41,4 +53,12 @@ public class MainTabsActivity extends TabActivity {
 
 	    tabHost.setCurrentTab(0);
 	}
+
+	private void initPreferences() {
+    	settings = getSharedPreferences("d5px", Context.MODE_PRIVATE);
+        Settings.initSettings(settings);
+        Settings.CALLBACK_URL = getResources().getString(R.string.callback_url);
+        Settings.CONSUMER_KEY = getResources().getString(R.string.consumer_key);
+	}
+	
 }

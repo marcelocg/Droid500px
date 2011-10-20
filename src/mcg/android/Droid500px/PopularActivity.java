@@ -1,16 +1,12 @@
 package mcg.android.Droid500px;
 
-import android.app.Activity;
+import mcg.android.Droid500px.helpers.RequestManager;
 import android.os.Bundle;
-import android.widget.TextView;
 
-public class PopularActivity extends Activity {
+public class PopularActivity extends GridViewActivity {
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState, RequestManager.POPULAR);
 
-        TextView textview = new TextView(this);
-        textview.setText("This is the 500px Popular Photos tab");
-        setContentView(textview);
     }
 
 }

@@ -10,26 +10,36 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.Toast;
 
-public class FreshActivity extends Activity {
-    public void onCreate(Bundle savedInstanceState) {
+public class GridViewActivity extends Activity {
+
+	private String[] urls = null;
+	private ImageAdapter imageAdapter = null;
+	private GridView grid = null;
+	
+	private void setPhotoStream(String stream){
+
+		grid = (GridView) findViewById(R.id.gridview);
+		urls = RequestManager.readPhotoStream(stream);
+        imageAdapter = new ImageAdapter(this);
+        imageAdapter.setPhotosURLs(urls);
+
+        grid.setAdapter(imageAdapter);
+	}
+
+    public void onCreate(Bundle savedInstanceState, String stream) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.gridview);
-
-        GridView grid = (GridView) findViewById(R.id.gridview);
-        ImageAdapter imageAdapter = new ImageAdapter(this);
         
-        String[] urls = RequestManager.readPhotoStream(RequestManager.FRESH_TODAY);
-        imageAdapter.setPhotosURLs(urls);
-        
-        grid.setAdapter(imageAdapter);
+        this.setPhotoStream(stream);
 
         grid.setOnItemClickListener(
         	new OnItemClickListener() {
         		public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-        			Toast.makeText(FreshActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+        			Toast.makeText(GridViewActivity.this, "" + position, Toast.LENGTH_SHORT).show();
         		}
         	}
         );    
     }
+	
 }
