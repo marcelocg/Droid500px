@@ -19,25 +19,26 @@ import android.util.Log;
 
 public class RequestManager {
 
-	private static String BASE_URL              = "https://api.500px.com/v1/photos?consumer_key=" + Settings.CONSUMER_KEY;
+	private static String BASE_URL               = "https://api.500px.com/v1/photos?consumer_key=" + Settings.CONSUMER_KEY;
 	
-	private static String EDITORS_CHOICE_PARAM  = "&feature=editors";
-	private static String FRESH_TODAY_PARAM     = "&feature=fresh_today";
-	private static String FRESH_YESTERDAY_PARAM = "&feature=fresh_yesterday";
-	private static String FRESH_WEEK_PARAM      = "&feature=fresh_week";
-	private static String UPCOMING_PARAM        = "&feature=upcoming";
-	private static String POPULAR_PARAM         = "&feature=popular";
+	private static String EDITORS_CHOICE_PARAM   = "&feature=editors";
+	private static String FRESH_TODAY_PARAM      = "&feature=fresh_today";
+	private static String FRESH_YESTERDAY_PARAM  = "&feature=fresh_yesterday";
+	private static String FRESH_WEEK_PARAM       = "&feature=fresh_week";
+	private static String UPCOMING_PARAM         = "&feature=upcoming";
+	private static String POPULAR_PARAM          = "&feature=popular";
 	
-	public static String EDITORS_CHOICE        = BASE_URL + EDITORS_CHOICE_PARAM;
-	public static String FRESH_TODAY           = BASE_URL + FRESH_TODAY_PARAM;
-	public static String FRESH_YESTERDAY       = BASE_URL + FRESH_YESTERDAY_PARAM;
-	public static String FRESH_WEEK            = BASE_URL + FRESH_WEEK_PARAM;
-	public static String UPCOMING              = BASE_URL + UPCOMING_PARAM;
-	public static String POPULAR               = BASE_URL + POPULAR_PARAM;
-	public static String MY_PHOTOS             = "";
+	public static String EDITORS_CHOICE          = BASE_URL + EDITORS_CHOICE_PARAM;
+	public static String FRESH_TODAY             = BASE_URL + FRESH_TODAY_PARAM;
+	public static String FRESH_YESTERDAY         = BASE_URL + FRESH_YESTERDAY_PARAM;
+	public static String FRESH_WEEK              = BASE_URL + FRESH_WEEK_PARAM;
+	public static String UPCOMING                = BASE_URL + UPCOMING_PARAM;
+	public static String POPULAR                 = BASE_URL + POPULAR_PARAM;
+	public static String MY_PHOTOS               = "";
+	public static int    DEFAULT_PHOTOS_PER_PAGE = 30;
 
 	public static String[] readPhotoStream(String stream){
-		return readPhotoStream(stream, 20, 1);
+		return readPhotoStream(stream, DEFAULT_PHOTOS_PER_PAGE, 1);
 	}
 	
 	public static String[] readPhotoStream(String stream, int photosPerPage){
@@ -45,7 +46,7 @@ public class RequestManager {
 	}
 
 	public static String[] readPhotoStreamPage(String stream, int page){
-		return readPhotoStream(stream, 20, page);
+		return readPhotoStream(stream, DEFAULT_PHOTOS_PER_PAGE, page);
 	}
 	
 	public static String[] readPhotoStream(String stream, int photosPerPage, int page){

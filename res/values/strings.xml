@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, Droid500pxActivity!</string>
-    <string name="app_name">Droid500px</string>
+    <string name="app_name">500droids</string>
     <string name="auth_progress_title">Auth Progress Title</string>
     <string name="auth_progress_text">Auth Progress Text</string>
+    <string name="refreshList">Refresh List</string>
+    <string name="refresh">Refresh</string>
 </resources>

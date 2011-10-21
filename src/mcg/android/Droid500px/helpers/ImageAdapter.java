@@ -15,7 +15,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 public class ImageAdapter extends BaseAdapter {
-    int galleryItemBackground;
     private Context context;
 
     private String[] photosURLs;
