@@ -54,7 +54,7 @@ public class ImageAdapter extends BaseAdapter {
         return imageView;
     }
 
-	private Bitmap getImageFromURL(String url) {
+	public static Bitmap getImageFromURL(String url) {
 		URL imageURL = null;
 		InputStream is = null;
 		try {

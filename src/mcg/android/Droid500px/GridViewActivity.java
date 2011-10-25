@@ -5,6 +5,7 @@ import java.util.Arrays;
 import mcg.android.Droid500px.helpers.ImageAdapter;
 import mcg.android.Droid500px.helpers.RequestManager;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +16,6 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.Toast;
 
 public class GridViewActivity extends Activity {
 
@@ -24,7 +24,51 @@ public class GridViewActivity extends Activity {
 	private String[] urls = null;
 	private ImageAdapter imageAdapter = null;
 	private GridView grid = null;
+
+    public void onCreate(Bundle savedInstanceState, String stream) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.gridview);
+        
+        this.initializePhotoStream(stream);
+
+        grid.setOnItemClickListener(
+        	new OnItemClickListener() {
+        		public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+        			showImage(position);
+//        			Toast.makeText(GridViewActivity.this, "" + (position + 1), Toast.LENGTH_SHORT).show();
+        		}
+        	}
+        );
+        
+        grid.setOnScrollListener(
+        	new OnScrollListener() {
+        		@Override
+        		public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) { 
+        			boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount;
+        			
+        			 if(loadMore) {
+        				 addPhotos();
+        				 imageAdapter.notifyDataSetChanged();
+        		     }
+        		}
+
+				@Override
+				public void onScrollStateChanged(AbsListView view, int scrollState) {
+					// No implementation needed so far
+				}
+        	}
+        );
+    }
 	
+	private void showImage(int position) {
+		Intent intent = new Intent(this, ImageViewActivity.class);
+		String url = urls[position];
+		url = url.replace("/1.jpg", "/3.jpg");
+		intent.putExtra("url", url);
+		startActivity(intent);
+	}
+
 	private void initializePhotoStream(String stream){
 		setPhotoStream(stream);
 		grid = (GridView) findViewById(R.id.gridview);
@@ -57,41 +101,6 @@ public class GridViewActivity extends Activity {
 		imageAdapter.setPhotosURLs(urls);
 	}
 	
-    public void onCreate(Bundle savedInstanceState, String stream) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.gridview);
-        
-        this.initializePhotoStream(stream);
-
-        grid.setOnItemClickListener(
-        	new OnItemClickListener() {
-        		public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-        			Toast.makeText(GridViewActivity.this, "" + (position + 1), Toast.LENGTH_SHORT).show();
-        		}
-        	}
-        );
-        
-        grid.setOnScrollListener(
-        	new OnScrollListener() {
-        		@Override
-        		public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) { 
-        			boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount;
-        			
-        			 if(loadMore) {
-        				 addPhotos();
-        				 imageAdapter.notifyDataSetChanged();
-        		     }
-        		}
-
-				@Override
-				public void onScrollStateChanged(AbsListView view, int scrollState) {
-					// No implementation needed so far
-				}
-        	}
-        );
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
